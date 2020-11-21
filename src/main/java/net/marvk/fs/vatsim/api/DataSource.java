@@ -6,4 +6,8 @@ public interface DataSource {
     String servers() throws VatsimApiException;
 
     String metar(final String airportIcao) throws VatsimApiException;
+
+    String firBoundaries() throws VatsimApiException;
+
+    String vatSpy(String airportIcao) throws VatsimApiException;
 }

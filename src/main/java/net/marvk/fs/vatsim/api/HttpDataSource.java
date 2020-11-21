@@ -53,4 +53,14 @@ public class HttpDataSource implements DataSource {
     public String metar(final String airportIcao) throws VatsimApiException {
         return httpRequest(urlProvider.metar(airportIcao));
     }
+
+    @Override
+    public String firBoundaries() throws VatsimApiException {
+        return null;
+    }
+
+    @Override
+    public String vatSpy(final String airportIcao) throws VatsimApiException {
+        return null;
+    }
 }

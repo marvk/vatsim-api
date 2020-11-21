@@ -12,4 +12,6 @@ public interface UrlProvider {
     }
 
     String metar(final String airportIcao);
+
+    String mapData();
 }
