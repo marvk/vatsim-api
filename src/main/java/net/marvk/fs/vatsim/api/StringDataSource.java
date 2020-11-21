@@ -36,7 +36,7 @@ public class StringDataSource implements DataSource {
     }
 
     @Override
-    public String vatSpy(final String airportIcao) throws VatsimApiException {
+    public String vatSpy() throws VatsimApiException {
         return vatSpy;
     }
 }

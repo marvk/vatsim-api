@@ -9,5 +9,5 @@ public interface DataSource {
 
     String firBoundaries() throws VatsimApiException;
 
-    String vatSpy(String airportIcao) throws VatsimApiException;
+    String vatSpy() throws VatsimApiException;
 }

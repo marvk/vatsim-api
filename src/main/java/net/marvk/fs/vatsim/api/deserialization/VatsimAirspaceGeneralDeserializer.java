@@ -16,8 +16,8 @@ public class VatsimAirspaceGeneralDeserializer implements VatsimFormatDeserializ
 
         return new VatsimAirspaceGeneral(
                 split[0],
-                !"0".equals(split[1]),
-                !"0".equals(split[2]),
+                DeserializationUtil.isTrue(split[1]),
+                DeserializationUtil.isTrue(split[2]),
                 Integer.parseInt(split[3]),
                 pointDeserializer.deserialize(split[4] + "|" + split[5]),
                 pointDeserializer.deserialize(split[4] + "|" + split[5]),

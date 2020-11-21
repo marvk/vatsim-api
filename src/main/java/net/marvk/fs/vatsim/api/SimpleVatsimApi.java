@@ -8,6 +8,7 @@ import net.marvk.fs.vatsim.api.data.VatsimFirBoundaries;
 import net.marvk.fs.vatsim.api.data.VatsimMetar;
 import net.marvk.fs.vatsim.api.data.VatsimVatSpy;
 import net.marvk.fs.vatsim.api.deserialization.VatsimFirBoundariesDeserializer;
+import net.marvk.fs.vatsim.api.deserialization.VatsimVatspyDeserializer;
 
 import java.io.StringReader;
 
@@ -46,7 +47,7 @@ public class SimpleVatsimApi implements VatsimApi {
 
     @Override
     public VatsimVatSpy vatSpy() throws VatsimApiException {
-        throw new UnsupportedOperationException();
+        return new VatsimVatspyDeserializer().deserialize(dataSource.vatSpy());
     }
 
     @SneakyThrows
@@ -54,6 +55,7 @@ public class SimpleVatsimApi implements VatsimApi {
         final ExampleDataSource dataSource = new ExampleDataSource();
         final VatsimApi vatsimApi = new SimpleVatsimApi(dataSource);
 
+        System.out.println(vatsimApi.vatSpy());
     }
 
 }
