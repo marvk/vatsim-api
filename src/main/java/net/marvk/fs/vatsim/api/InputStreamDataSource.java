@@ -1,15 +1,14 @@
 package net.marvk.fs.vatsim.api;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.stream.Collectors;
 
 public class InputStreamDataSource extends StringDataSource {
-    public InputStreamDataSource(final InputStream data, final InputStream servers, final InputStream metar, final InputStream firBoundaries, final InputStream vatSpy) throws IOException {
-        super(loadFile(data), loadFile(servers), loadFile(metar), loadFile(firBoundaries), loadFile(vatSpy));
+    public InputStreamDataSource(final InputStream data, final InputStream servers, final InputStream metar, final InputStream firBoundaries, final InputStream vatSpy, final InputStream mapData) {
+        super(loadFile(data), loadFile(servers), loadFile(metar), loadFile(firBoundaries), loadFile(vatSpy), loadFile(mapData));
     }
 
     private static String loadFile(final InputStream inputStream) {

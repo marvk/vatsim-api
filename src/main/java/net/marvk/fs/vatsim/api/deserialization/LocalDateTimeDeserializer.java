@@ -12,7 +12,7 @@ import java.time.format.DateTimeParseException;
 
 public class LocalDateTimeDeserializer implements JsonDeserializer<LocalDateTime> {
     @Override
-    public LocalDateTime deserialize(final JsonElement json, final Type type, JsonDeserializationContext context) throws JsonParseException {
+    public LocalDateTime deserialize(final JsonElement json, final Type type, final JsonDeserializationContext context) throws JsonParseException {
         if ("0001-01-01T00:00:00".equals(json.getAsString())) {
             return null;
         }

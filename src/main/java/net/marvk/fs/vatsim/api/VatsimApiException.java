@@ -1,6 +1,11 @@
 package net.marvk.fs.vatsim.api;
 
+import java.io.Serial;
+
 public class VatsimApiException extends Exception {
+    @Serial
+    private static final long serialVersionUID = 5331196155812379396L;
+
     public VatsimApiException() {
     }
 

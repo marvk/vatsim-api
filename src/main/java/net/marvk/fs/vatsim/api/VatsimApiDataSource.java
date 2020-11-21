@@ -1,6 +1,6 @@
 package net.marvk.fs.vatsim.api;
 
-public interface DataSource {
+public interface VatsimApiDataSource {
     String data() throws VatsimApiException;
 
     String servers() throws VatsimApiException;
@@ -10,4 +10,6 @@ public interface DataSource {
     String firBoundaries() throws VatsimApiException;
 
     String vatSpy() throws VatsimApiException;
+
+    String mapData() throws VatsimApiException;
 }

@@ -1,5 +1,7 @@
 package net.marvk.fs.vatsim.api;
 
+import com.google.gson.Gson;
+import net.marvk.fs.vatsim.api.data.VatsimMapData;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpUriRequest;
@@ -10,15 +12,15 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 
-public class HttpDataSource implements DataSource {
-    private final UrlProvider urlProvider;
+public class HttpDataSource implements VatsimApiDataSource {
+    private final VatsimApiUrlProvider urlProvider;
     private final CloseableHttpClient httpClient;
 
     public HttpDataSource() {
         this(new UrlProviderV1());
     }
 
-    public HttpDataSource(final UrlProvider urlProvider) {
+    public HttpDataSource(final VatsimApiUrlProvider urlProvider) {
         this.urlProvider = urlProvider;
 
         this.httpClient = HttpClients.createDefault();
@@ -56,11 +58,20 @@ public class HttpDataSource implements DataSource {
 
     @Override
     public String firBoundaries() throws VatsimApiException {
-        return null;
+        return httpRequest(parsedMapData().getFirBoundariesDataUrl());
     }
 
     @Override
     public String vatSpy() throws VatsimApiException {
-        return null;
+        return httpRequest(parsedMapData().getVatSpyDataUrl());
+    }
+
+    private VatsimMapData parsedMapData() throws VatsimApiException {
+        return new Gson().fromJson(mapData(), VatsimMapData.class);
+    }
+
+    @Override
+    public String mapData() throws VatsimApiException {
+        return httpRequest(urlProvider.mapData());
     }
 }

@@ -13,9 +13,9 @@ import net.marvk.fs.vatsim.api.deserialization.VatsimVatspyDeserializer;
 import java.io.StringReader;
 
 public class SimpleVatsimApi implements VatsimApi {
-    private final DataSource dataSource;
+    private final VatsimApiDataSource dataSource;
 
-    public SimpleVatsimApi(final DataSource dataSource) {
+    public SimpleVatsimApi(final VatsimApiDataSource dataSource) {
         this.dataSource = dataSource;
     }
 
@@ -52,7 +52,7 @@ public class SimpleVatsimApi implements VatsimApi {
 
     @SneakyThrows
     public static void main(final String[] args) {
-        final ExampleDataSource dataSource = new ExampleDataSource();
+        final VatsimApiDataSource dataSource = new HttpDataSource();
         final VatsimApi vatsimApi = new SimpleVatsimApi(dataSource);
 
         System.out.println(vatsimApi.vatSpy());

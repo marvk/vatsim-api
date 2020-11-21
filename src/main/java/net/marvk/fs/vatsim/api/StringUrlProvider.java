@@ -1,6 +1,6 @@
 package net.marvk.fs.vatsim.api;
 
-public class StringUrlProvider implements UrlProvider {
+public class StringUrlProvider implements VatsimApiUrlProvider {
     private final String vatsimDataText;
     private final String vatsimDataJson;
     private final String vatsimServers;
