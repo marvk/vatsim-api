@@ -4,9 +4,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
-import net.marvk.fs.vatsim.api.deserialization.LocalDateTimeDeserializer;
+import net.marvk.fs.vatsim.api.deserialization.ZonedDateTimeDeserializer;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Data
 public class VatsimClient {
@@ -17,7 +17,7 @@ public class VatsimClient {
     private final String cid;
 
     @Expose
-    @SerializedName("real_name")
+    @SerializedName("realname")
     private final String realName;
 
     @Expose
@@ -64,7 +64,7 @@ public class VatsimClient {
     private final String server;
 
     @Expose
-    @SerializedName("protrevsion")
+    @SerializedName("protrevision")
     private final String protRevsion;
 
     @Expose
@@ -74,7 +74,7 @@ public class VatsimClient {
     private final String transponder;
 
     @Expose
-    @SerializedName("faciliytype")
+    @SerializedName("facilitytype")
     private final String faciliyType;
 
     @Expose
@@ -147,13 +147,13 @@ public class VatsimClient {
 
     @Expose
     @SerializedName("time_last_atis_received")
-    @JsonAdapter(LocalDateTimeDeserializer.class)
-    private final LocalDateTime timeLastAtisReceived;
+    @JsonAdapter(ZonedDateTimeDeserializer.class)
+    private final ZonedDateTime timeLastAtisReceived;
 
     @Expose
     @SerializedName("time_logon")
-    @JsonAdapter(LocalDateTimeDeserializer.class)
-    private final LocalDateTime timeLogon;
+    @JsonAdapter(ZonedDateTimeDeserializer.class)
+    private final ZonedDateTime timeLogon;
 
     @Expose
     private final String heading;
