@@ -19,11 +19,11 @@ public class VatsimAirportDeserializer implements VatsimFormatDeserializer<Vatsi
         final String[] split = s.split("\\|", -1);
 
         return new VatsimAirport(
-                split[0],
-                split[1],
+                DeserializationUtil.nullIfBlank(split[0]),
+                DeserializationUtil.nullIfBlank(split[1]),
                 pointDeserializer.deserialize(split[2] + "|" + split[3]),
-                split[4],
-                split[5],
+                DeserializationUtil.nullIfBlank(split[4]),
+                DeserializationUtil.nullIfBlank(split[5]),
                 DeserializationUtil.isTrue(split[6])
         );
     }

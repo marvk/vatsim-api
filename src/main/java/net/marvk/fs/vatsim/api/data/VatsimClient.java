@@ -75,7 +75,7 @@ public class VatsimClient {
 
     @Expose
     @SerializedName("facilitytype")
-    private final String faciliyType;
+    private final String facilityType;
 
     @Expose
     @SerializedName("visualrange")

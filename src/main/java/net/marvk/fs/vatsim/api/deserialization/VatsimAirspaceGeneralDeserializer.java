@@ -20,8 +20,8 @@ public class VatsimAirspaceGeneralDeserializer implements VatsimFormatDeserializ
                 DeserializationUtil.isTrue(split[2]),
                 Integer.parseInt(split[3]),
                 pointDeserializer.deserialize(split[4] + "|" + split[5]),
-                pointDeserializer.deserialize(split[4] + "|" + split[5]),
-                pointDeserializer.deserialize(split[4] + "|" + split[5])
+                pointDeserializer.deserialize(split[6] + "|" + split[7]),
+                pointDeserializer.deserialize(split[8] + "|" + split[9])
         );
     }
 }
