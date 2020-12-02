@@ -5,7 +5,7 @@ import net.marvk.fs.vatsim.api.data.VatsimFlightInformationRegion;
 public class VatsimFlightInformationRegionDeserializer implements VatsimFormatDeserializer<VatsimFlightInformationRegion> {
     @Override
     public VatsimFlightInformationRegion deserialize(final String s) {
-        final String[] split = s.split("\\|",-1);
+        final String[] split = DeserializationUtil.split(s);
 
         return new VatsimFlightInformationRegion(
                 split[0],

@@ -1,5 +1,7 @@
 package net.marvk.fs.vatsim.api;
 
+import lombok.SneakyThrows;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -11,9 +13,10 @@ public class InputStreamDataSource extends StringDataSource {
         super(loadFile(data), loadFile(servers), loadFile(metar), loadFile(firBoundaries), loadFile(vatSpy), loadFile(mapData));
     }
 
+    @SneakyThrows
     private static String loadFile(final InputStream inputStream) {
-        return new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))
-                .lines()
-                .collect(Collectors.joining("\n"));
+        try (final var br = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+            return br.lines().collect(Collectors.joining("\n"));
+        }
     }
 }

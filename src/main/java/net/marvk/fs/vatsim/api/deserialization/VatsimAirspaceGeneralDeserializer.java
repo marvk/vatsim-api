@@ -12,7 +12,7 @@ public class VatsimAirspaceGeneralDeserializer implements VatsimFormatDeserializ
 
     @Override
     public VatsimAirspaceGeneral deserialize(final String s) {
-        final String[] split = s.split("\\|");
+        final String[] split = DeserializationUtil.split(s);
 
         return new VatsimAirspaceGeneral(
                 split[0],

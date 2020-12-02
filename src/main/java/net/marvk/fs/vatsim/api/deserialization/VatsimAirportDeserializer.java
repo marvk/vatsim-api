@@ -16,7 +16,7 @@ public class VatsimAirportDeserializer implements VatsimFormatDeserializer<Vatsi
 
     @Override
     public VatsimAirport deserialize(final String s) {
-        final String[] split = s.split("\\|", -1);
+        final String[] split = DeserializationUtil.split(s);
 
         return new VatsimAirport(
                 DeserializationUtil.nullIfBlank(split[0]),

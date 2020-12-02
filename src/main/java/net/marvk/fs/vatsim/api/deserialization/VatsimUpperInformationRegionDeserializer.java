@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class VatsimUpperInformationRegionDeserializer implements VatsimFormatDeserializer<VatsimUpperInformationRegion> {
     @Override
     public VatsimUpperInformationRegion deserialize(final String s) {
-        final String[] split = s.split("\\|", -1);
+        final String[] split = DeserializationUtil.split(s);
 
         return new VatsimUpperInformationRegion(
                 split[0],
