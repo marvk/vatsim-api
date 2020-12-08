@@ -7,7 +7,8 @@ public class UrlProviderV1 extends StringUrlProvider {
                 "http://cluster.data.vatsim.net/vatsim-data.json",
                 "http://cluster.data.vatsim.net/vatsim-servers.txt",
                 "http://stats.vatsim.net/search_id.php?id=%s",
-                "https://api.vatsim.net/api/map_data/"
+                "https://api.vatsim.net/api/map_data/",
+                "https://stats.vatsim.net/search_id.php?id=%s"
         );
     }
 }

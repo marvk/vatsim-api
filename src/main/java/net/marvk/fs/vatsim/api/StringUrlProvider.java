@@ -6,13 +6,15 @@ public class StringUrlProvider implements VatsimApiUrlProvider {
     private final String vatsimServers;
     private final String metar;
     private final String mapData;
+    private final String stats;
 
-    public StringUrlProvider(final String vatsimDataText, final String vatsimDataJson, final String vatsimServers, final String metar, final String mapData) {
+    public StringUrlProvider(final String vatsimDataText, final String vatsimDataJson, final String vatsimServers, final String metar, final String mapData, final String stats) {
         this.vatsimDataText = vatsimDataText;
         this.vatsimDataJson = vatsimDataJson;
         this.vatsimServers = vatsimServers;
         this.metar = metar;
         this.mapData = mapData;
+        this.stats = stats;
     }
 
     @Override
@@ -32,11 +34,16 @@ public class StringUrlProvider implements VatsimApiUrlProvider {
 
     @Override
     public String metar(final String airportIcao) {
-        return String.format(metar, airportIcao);
+        return metar.formatted(airportIcao);
     }
 
     @Override
     public String mapData() {
         return mapData;
+    }
+
+    @Override
+    public String stats(final String cid) {
+        return stats.formatted(cid);
     }
 }

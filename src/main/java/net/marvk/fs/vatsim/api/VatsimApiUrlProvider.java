@@ -14,4 +14,6 @@ public interface VatsimApiUrlProvider {
     String metar(final String airportIcao);
 
     String mapData();
+
+    String stats(final String cid);
 }
