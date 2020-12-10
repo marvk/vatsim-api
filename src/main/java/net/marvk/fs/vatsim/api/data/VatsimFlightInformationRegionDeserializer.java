@@ -1,6 +1,4 @@
-package net.marvk.fs.vatsim.api.deserialization;
-
-import net.marvk.fs.vatsim.api.data.VatsimFlightInformationRegion;
+package net.marvk.fs.vatsim.api.data;
 
 public class VatsimFlightInformationRegionDeserializer implements VatsimFormatDeserializer<VatsimFlightInformationRegion> {
     @Override

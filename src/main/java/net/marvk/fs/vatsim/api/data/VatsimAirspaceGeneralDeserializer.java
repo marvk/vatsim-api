@@ -1,7 +1,4 @@
-package net.marvk.fs.vatsim.api.deserialization;
-
-import net.marvk.fs.vatsim.api.data.Point;
-import net.marvk.fs.vatsim.api.data.VatsimAirspaceGeneral;
+package net.marvk.fs.vatsim.api.data;
 
 public class VatsimAirspaceGeneralDeserializer implements VatsimFormatDeserializer<VatsimAirspaceGeneral> {
     private final VatsimFormatDeserializer<Point> pointDeserializer;

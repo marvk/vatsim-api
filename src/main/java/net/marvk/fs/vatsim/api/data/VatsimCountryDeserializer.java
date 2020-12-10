@@ -1,6 +1,4 @@
-package net.marvk.fs.vatsim.api.deserialization;
-
-import net.marvk.fs.vatsim.api.data.VatsimCountry;
+package net.marvk.fs.vatsim.api.data;
 
 public class VatsimCountryDeserializer implements VatsimFormatDeserializer<VatsimCountry> {
     @Override

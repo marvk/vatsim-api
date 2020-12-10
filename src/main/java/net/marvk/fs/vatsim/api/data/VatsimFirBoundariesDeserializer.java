@@ -1,9 +1,4 @@
-package net.marvk.fs.vatsim.api.deserialization;
-
-import net.marvk.fs.vatsim.api.data.Point;
-import net.marvk.fs.vatsim.api.data.VatsimAirspace;
-import net.marvk.fs.vatsim.api.data.VatsimAirspaceGeneral;
-import net.marvk.fs.vatsim.api.data.VatsimFirBoundaries;
+package net.marvk.fs.vatsim.api.data;
 
 import java.util.ArrayList;
 import java.util.List;

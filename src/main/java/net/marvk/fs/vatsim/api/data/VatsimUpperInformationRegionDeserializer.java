@@ -1,6 +1,4 @@
-package net.marvk.fs.vatsim.api.deserialization;
-
-import net.marvk.fs.vatsim.api.data.VatsimUpperInformationRegion;
+package net.marvk.fs.vatsim.api.data;
 
 import java.util.Arrays;
 

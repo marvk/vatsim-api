@@ -1,4 +1,4 @@
-package net.marvk.fs.vatsim.api.deserialization;
+package net.marvk.fs.vatsim.api.data;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;

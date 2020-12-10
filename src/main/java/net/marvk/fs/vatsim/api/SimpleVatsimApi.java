@@ -3,12 +3,7 @@ package net.marvk.fs.vatsim.api;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import lombok.SneakyThrows;
-import net.marvk.fs.vatsim.api.data.VatsimData;
-import net.marvk.fs.vatsim.api.data.VatsimFirBoundaries;
-import net.marvk.fs.vatsim.api.data.VatsimMetar;
-import net.marvk.fs.vatsim.api.data.VatsimVatSpy;
-import net.marvk.fs.vatsim.api.deserialization.VatsimFirBoundariesDeserializer;
-import net.marvk.fs.vatsim.api.deserialization.VatsimVatspyDeserializer;
+import net.marvk.fs.vatsim.api.data.*;
 
 import java.io.StringReader;
 
@@ -20,7 +15,7 @@ public class SimpleVatsimApi implements VatsimApi {
     }
 
     private static Gson gson() {
-        return new GsonBuilder().create();
+        return new GsonBuilder().registerTypeAdapter(VatsimData.class, new VatsimDataDeserializer()).create();
     }
 
     @Override
@@ -52,10 +47,12 @@ public class SimpleVatsimApi implements VatsimApi {
 
     @SneakyThrows
     public static void main(final String[] args) {
-        final VatsimApiDataSource dataSource = new HttpDataSource();
+        final VatsimApiDataSource dataSource = new ExampleDataSource();
         final VatsimApi vatsimApi = new SimpleVatsimApi(dataSource);
 
-        System.out.println(vatsimApi.vatSpy());
+        final VatsimData data = vatsimApi.data();
+
+        System.out.println(data);
     }
 
 }

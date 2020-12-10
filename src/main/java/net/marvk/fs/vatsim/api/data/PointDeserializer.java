@@ -1,6 +1,4 @@
-package net.marvk.fs.vatsim.api.deserialization;
-
-import net.marvk.fs.vatsim.api.data.Point;
+package net.marvk.fs.vatsim.api.data;
 
 public class PointDeserializer implements VatsimFormatDeserializer<Point> {
     @Override
