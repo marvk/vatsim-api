@@ -33,9 +33,7 @@ public class VatsimFlightPlan {
     @SerializedName("fuel_time")
     private final String fuelTime;
 
-    @SerializedName("planned_route")
     private final String route;
 
-    @SerializedName("planned_remarks")
     private final String remarks;
 }
