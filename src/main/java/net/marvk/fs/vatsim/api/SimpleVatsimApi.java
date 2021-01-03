@@ -31,7 +31,6 @@ public class SimpleVatsimApi implements VatsimApi {
     @Override
     public VatsimMetar metar(final String airportIcao) throws VatsimApiException {
         final String metar = dataSource.metar(airportIcao);
-
         return new VatsimMetar(airportIcao, metar);
     }
 
