@@ -7,6 +7,7 @@
     <groupId>net.marvk.fs</groupId>
     <artifactId>vatsim-api</artifactId>
     <version>0.1.0-SNAPSHOT</version>
+    <name>VATSIM Java API</name>
     <description>Java API for http://vatsim.net/</description>
     <inceptionYear>2020</inceptionYear>
     <url>https://github.com/marvk/vatsim-api</url>
@@ -14,6 +15,13 @@
         <system>GitHub</system>
         <url>https://github.com/marvk/vatsim-api/issues</url>
     </issueManagement>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://github.com/marvk/vatsim-api/blob/master/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
