@@ -1,6 +1,9 @@
 package net.marvk.fs.vatsim.api;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import net.marvk.fs.vatsim.api.data.VatsimMapData;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -11,13 +14,14 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class HttpDataSource implements VatsimApiDataSource {
     private final VatsimApiUrlProvider urlProvider;
     private final CloseableHttpClient httpClient;
 
     public HttpDataSource() {
-        this(new UrlProviderV1());
+        this(new UrlProviderV3());
     }
 
     public HttpDataSource(final VatsimApiUrlProvider urlProvider) {
@@ -35,7 +39,7 @@ public class HttpDataSource implements VatsimApiDataSource {
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 return EntityUtils.toString(response.getEntity());
             }
-            throw new VatsimApiException();
+            throw new VatsimApiException(response.getStatusLine().getReasonPhrase());
         } catch (final IOException e) {
             throw new VatsimApiException(e);
         }
@@ -43,12 +47,29 @@ public class HttpDataSource implements VatsimApiDataSource {
 
     @Override
     public String data() throws VatsimApiException {
-        return httpRequest(urlProvider.vatsimDataJson());
+        return httpRequest(dataUrl());
     }
 
-    @Override
-    public String servers() throws VatsimApiException {
-        return httpRequest(urlProvider.vatsimServers());
+    private String dataUrl() {
+        try {
+            return fetchDataUrl();
+        } catch (final VatsimApiException e) {
+            return urlProvider.dataFallback();
+        }
+    }
+
+    private String fetchDataUrl() throws VatsimApiException {
+        final String rawStatusJson = httpRequest(urlProvider.status());
+        final JsonArray dataUrls = JsonParser
+                .parseString(rawStatusJson)
+                .getAsJsonObject()
+                .getAsJsonObject("data")
+                .getAsJsonArray("v3");
+
+        final String randomDataUrl = dataUrls
+                .get(ThreadLocalRandom.current().nextInt(dataUrls.size()))
+                .getAsString();
+        return randomDataUrl;
     }
 
     @Override

@@ -23,11 +23,6 @@ public class StringDataSource implements VatsimApiDataSource {
     }
 
     @Override
-    public String servers() throws VatsimApiException {
-        return servers;
-    }
-
-    @Override
     public String metar(final String airportIcao) throws VatsimApiException {
         return metar;
     }

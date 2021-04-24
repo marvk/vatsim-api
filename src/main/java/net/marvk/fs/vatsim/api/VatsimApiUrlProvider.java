@@ -1,15 +1,11 @@
 package net.marvk.fs.vatsim.api;
 
 public interface VatsimApiUrlProvider {
-    String vatsimDataText();
+    String status();
 
-    String vatsimDataJson();
+    String dataFallback();
 
-    String vatsimServers();
-
-    default String vatsimServersLive() {
-        return vatsimServers();
-    }
+    String transceiversFallback();
 
     String metar(final String airportIcao);
 

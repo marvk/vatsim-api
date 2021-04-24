@@ -1,35 +1,36 @@
 package net.marvk.fs.vatsim.api;
 
 public class StringUrlProvider implements VatsimApiUrlProvider {
-    private final String vatsimDataText;
-    private final String vatsimDataJson;
-    private final String vatsimServers;
+
+    private final String status;
+    private final String dataFallback;
+    private final String transceiversFallback;
     private final String metar;
     private final String mapData;
     private final String stats;
 
-    public StringUrlProvider(final String vatsimDataText, final String vatsimDataJson, final String vatsimServers, final String metar, final String mapData, final String stats) {
-        this.vatsimDataText = vatsimDataText;
-        this.vatsimDataJson = vatsimDataJson;
-        this.vatsimServers = vatsimServers;
+    public StringUrlProvider(final String status, final String dataFallback, final String transceiversFallback, final String metar, final String mapData, final String stats) {
+        this.status = status;
+        this.dataFallback = dataFallback;
+        this.transceiversFallback = transceiversFallback;
         this.metar = metar;
         this.mapData = mapData;
         this.stats = stats;
     }
 
     @Override
-    public String vatsimDataText() {
-        return vatsimDataText;
+    public String status() {
+        return status;
     }
 
     @Override
-    public String vatsimDataJson() {
-        return vatsimDataJson;
+    public String dataFallback() {
+        return dataFallback;
     }
 
     @Override
-    public String vatsimServers() {
-        return vatsimServers;
+    public String transceiversFallback() {
+        return transceiversFallback;
     }
 
     @Override
