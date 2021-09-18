@@ -15,17 +15,15 @@ public class SimpleVatsimApi implements VatsimApi {
     }
 
     private static Gson gson() {
-        return new GsonBuilder().registerTypeAdapter(VatsimData.class, new VatsimDataDeserializer()).create();
+        return new GsonBuilder()
+                .registerTypeAdapter(VatsimData.class, new VatsimDataDeserializer())
+                .registerTypeAdapter(VatsimEvents.class, new VatsimEventsDeserializer())
+                .create();
     }
 
     @Override
     public VatsimData data() throws VatsimApiException {
         return gson().fromJson(new StringReader(dataSource.data()), VatsimData.class);
-    }
-
-    @Override
-    public VatsimData servers() {
-        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -44,14 +42,18 @@ public class SimpleVatsimApi implements VatsimApi {
         return new VatsimVatspyDeserializer().deserialize(dataSource.vatSpy());
     }
 
+    @Override
+    public VatsimEvents events() throws VatsimApiException {
+        return gson().fromJson(new StringReader(dataSource.events()), VatsimEvents.class);
+    }
+
     @SneakyThrows
     public static void main(final String[] args) {
         final VatsimApiDataSource dataSource = new ExampleDataSource();
         final VatsimApi vatsimApi = new SimpleVatsimApi(dataSource);
 
-        final VatsimData data = vatsimApi.data();
+        final VatsimEvents data = vatsimApi.events();
 
         System.out.println(data);
     }
-
 }

@@ -10,4 +10,6 @@ public interface VatsimApiDataSource {
     String vatSpy() throws VatsimApiException;
 
     String mapData() throws VatsimApiException;
+
+    String events() throws VatsimApiException;
 }

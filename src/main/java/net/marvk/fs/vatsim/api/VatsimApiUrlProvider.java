@@ -12,4 +12,6 @@ public interface VatsimApiUrlProvider {
     String mapData();
 
     String stats(final String cid);
+
+    String events();
 }

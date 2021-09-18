@@ -8,7 +8,8 @@ public class UrlProviderV3 extends StringUrlProvider {
                 "https://data.vatsim.net/v3/transceivers-data.json",
                 "https://metar.vatsim.net/metar.php?id=%s",
                 "https://api.vatsim.net/api/map_data/",
-                "https://stats.vatsim.net/search_id.php?id=%s"
+                "https://stats.vatsim.net/search_id.php?id=%s",
+                "https://my.vatsim.net/api/v1/events/all"
         );
     }
 }

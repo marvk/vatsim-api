@@ -2,19 +2,19 @@ package net.marvk.fs.vatsim.api;
 
 public class StringDataSource implements VatsimApiDataSource {
     private final String data;
-    private final String servers;
     private final String metar;
     private final String firBoundaries;
     private final String vatSpy;
     private final String mapData;
+    private final String events;
 
-    public StringDataSource(final String data, final String servers, final String metar, final String firBoundaries, final String vatSpy, final String mapData) {
+    public StringDataSource(final String data, final String metar, final String firBoundaries, final String vatSpy, final String mapData, final String events) {
         this.data = data;
-        this.servers = servers;
         this.metar = metar;
         this.firBoundaries = firBoundaries;
         this.vatSpy = vatSpy;
         this.mapData = mapData;
+        this.events = events;
     }
 
     @Override
@@ -40,5 +40,10 @@ public class StringDataSource implements VatsimApiDataSource {
     @Override
     public String mapData() throws VatsimApiException {
         return mapData;
+    }
+
+    @Override
+    public String events() throws VatsimApiException {
+        return events;
     }
 }

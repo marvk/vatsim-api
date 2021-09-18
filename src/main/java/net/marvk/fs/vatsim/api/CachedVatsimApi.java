@@ -1,9 +1,6 @@
 package net.marvk.fs.vatsim.api;
 
-import net.marvk.fs.vatsim.api.data.VatsimData;
-import net.marvk.fs.vatsim.api.data.VatsimFirBoundaries;
-import net.marvk.fs.vatsim.api.data.VatsimMetar;
-import net.marvk.fs.vatsim.api.data.VatsimVatSpy;
+import net.marvk.fs.vatsim.api.data.*;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -33,11 +30,6 @@ public class CachedVatsimApi implements VatsimApi {
     }
 
     @Override
-    public VatsimData servers() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public VatsimMetar metar(final String airportIcao) throws VatsimApiException {
         return api.metar(airportIcao);
     }
@@ -54,6 +46,11 @@ public class CachedVatsimApi implements VatsimApi {
         } catch (final Exception e) {
             throw new VatsimApiException(e);
         }
+    }
+
+    @Override
+    public VatsimEvents events() throws VatsimApiException {
+        return api.events();
     }
 
     public void clear() {

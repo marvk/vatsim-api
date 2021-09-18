@@ -95,4 +95,9 @@ public class HttpDataSource implements VatsimApiDataSource {
     public String mapData() throws VatsimApiException {
         return httpRequest(urlProvider.mapData());
     }
+
+    @Override
+    public String events() throws VatsimApiException {
+        return httpRequest(urlProvider.events());
+    }
 }

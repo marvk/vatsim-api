@@ -9,8 +9,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.stream.Collectors;
 
 public class InputStreamDataSource extends StringDataSource {
-    public InputStreamDataSource(final InputStream data, final InputStream servers, final InputStream metar, final InputStream firBoundaries, final InputStream vatSpy, final InputStream mapData) {
-        super(loadFile(data), loadFile(servers), loadFile(metar), loadFile(firBoundaries), loadFile(vatSpy), loadFile(mapData));
+    public InputStreamDataSource(final InputStream data, final InputStream metar, final InputStream firBoundaries, final InputStream vatSpy, final InputStream mapData, final InputStream events) {
+        super(loadFile(data), loadFile(metar), loadFile(firBoundaries), loadFile(vatSpy), loadFile(mapData), loadFile(events));
     }
 
     @SneakyThrows
