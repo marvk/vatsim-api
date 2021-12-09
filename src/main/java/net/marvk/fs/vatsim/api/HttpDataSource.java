@@ -2,10 +2,10 @@ package net.marvk.fs.vatsim.api;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import net.marvk.fs.vatsim.api.data.VatsimMapData;
 import org.apache.http.HttpStatus;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.methods.RequestBuilder;
@@ -20,14 +20,23 @@ public class HttpDataSource implements VatsimApiDataSource {
     private final VatsimApiUrlProvider urlProvider;
     private final CloseableHttpClient httpClient;
 
+    private String dataUrl;
+
     public HttpDataSource() {
         this(new UrlProviderV3());
     }
 
-    public HttpDataSource(final VatsimApiUrlProvider urlProvider) {
-        this.urlProvider = urlProvider;
+    public HttpDataSource(final CloseableHttpClient httpClient) {
+        this(new UrlProviderV3(), httpClient);
+    }
 
-        this.httpClient = HttpClients.createDefault();
+    public HttpDataSource(final VatsimApiUrlProvider urlProvider) {
+        this(urlProvider, HttpClients.createDefault());
+    }
+
+    public HttpDataSource(final VatsimApiUrlProvider urlProvider, final CloseableHttpClient httpClient) {
+        this.urlProvider = urlProvider;
+        this.httpClient = httpClient;
     }
 
     private String httpRequest(final String url) throws VatsimApiException {
@@ -40,6 +49,8 @@ public class HttpDataSource implements VatsimApiDataSource {
                 return EntityUtils.toString(response.getEntity());
             }
             throw new VatsimApiException(response.getStatusLine().getReasonPhrase());
+        } catch (final ClientProtocolException e) {
+            throw new VatsimApiException(e);
         } catch (final IOException e) {
             throw new VatsimApiException(e);
         }
@@ -51,11 +62,16 @@ public class HttpDataSource implements VatsimApiDataSource {
     }
 
     private String dataUrl() {
-        try {
-            return fetchDataUrl();
-        } catch (final VatsimApiException e) {
-            return urlProvider.dataFallback();
+        if (dataUrl == null) {
+            try {
+                dataUrl = fetchDataUrl();
+            } catch (final VatsimApiException e) {
+                e.printStackTrace();
+                dataUrl = urlProvider.dataFallback();
+            }
         }
+
+        return dataUrl;
     }
 
     private String fetchDataUrl() throws VatsimApiException {
@@ -66,10 +82,9 @@ public class HttpDataSource implements VatsimApiDataSource {
                 .getAsJsonObject("data")
                 .getAsJsonArray("v3");
 
-        final String randomDataUrl = dataUrls
+        return dataUrls
                 .get(ThreadLocalRandom.current().nextInt(dataUrls.size()))
                 .getAsString();
-        return randomDataUrl;
     }
 
     @Override
