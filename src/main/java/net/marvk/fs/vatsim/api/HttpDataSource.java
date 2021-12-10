@@ -21,6 +21,8 @@ public class HttpDataSource implements VatsimApiDataSource {
     private final CloseableHttpClient httpClient;
 
     private String dataUrl;
+    private String mapData;
+    private VatsimMapData parsedMapData;
 
     public HttpDataSource() {
         this(new UrlProviderV3());
@@ -103,12 +105,20 @@ public class HttpDataSource implements VatsimApiDataSource {
     }
 
     private VatsimMapData parsedMapData() throws VatsimApiException {
-        return new Gson().fromJson(mapData(), VatsimMapData.class);
+        if (parsedMapData == null) {
+            parsedMapData = new Gson().fromJson(mapData(), VatsimMapData.class);
+        }
+
+        return parsedMapData;
     }
 
     @Override
     public String mapData() throws VatsimApiException {
-        return httpRequest(urlProvider.mapData());
+        if (mapData == null) {
+            mapData = httpRequest(urlProvider.mapData());
+        }
+
+        return mapData;
     }
 
     @Override

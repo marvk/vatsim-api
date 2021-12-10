@@ -47,6 +47,11 @@ public class SimpleVatsimApi implements VatsimApi {
         return gson().fromJson(new StringReader(dataSource.events()), VatsimEvents.class);
     }
 
+    @Override
+    public VatsimMapData mapData() throws VatsimApiException {
+        return gson().fromJson(new StringReader(dataSource.mapData()), VatsimMapData.class);
+    }
+
     @SneakyThrows
     public static void main(final String[] args) {
         final VatsimApiDataSource dataSource = new ExampleDataSource();

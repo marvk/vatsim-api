@@ -12,4 +12,6 @@ public interface VatsimApi {
     VatsimVatSpy vatSpy() throws VatsimApiException;
 
     VatsimEvents events() throws VatsimApiException;
+
+    VatsimMapData mapData() throws VatsimApiException;
 }

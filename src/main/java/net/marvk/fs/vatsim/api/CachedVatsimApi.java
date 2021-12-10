@@ -53,6 +53,11 @@ public class CachedVatsimApi implements VatsimApi {
         return api.events();
     }
 
+    @Override
+    public VatsimMapData mapData() throws VatsimApiException {
+        return api.mapData();
+    }
+
     public void clear() {
         dataCache.clear();
     }
